@@ -22,11 +22,24 @@ module.exports = {
             //     updateHash: false
             // }
         },
-        
+
         // Legacy options object support for some older plugins
         pluginsOptions: {}
     },
 
     // External plugins options (are also exposed to client-side
-    plugins: {}
+    plugins: {
+        browserSync: {
+            browserSync: {
+                files: [
+                    'backbase/**/index.+(src|src.html)',
+                    'backbase/**/*.css',
+                    'backbase/**/*.js',
+                    'specs/**/index.+(src|src.html)',
+                    'specs/**/*.css',
+                    'specs/**/*.js'
+                ]
+            }
+        }
+    }
 };
