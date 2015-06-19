@@ -32,9 +32,9 @@ module.exports = {
         browserSync: {
             browserSync: {
                 files: [
-                    'backbase/**/index.+(src|src.html)',
-                    'backbase/**/*.css',
-                    'backbase/**/*.js',
+                    'bundles/**/index.+(src|src.html)',
+                    'bundles/**/*.css',
+                    'bundles/**/*.js',
                     'specs/**/index.+(src|src.html)',
                     'specs/**/*.css',
                     'specs/**/*.js'

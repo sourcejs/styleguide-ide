@@ -8,7 +8,7 @@ var gutil = require('gulp-util');
 var statusControl = require('../status-control');
 
 var skipError = false;
-var baseDir = '../test-project/backbase';
+var baseDir = '../test-project/bundles';
 
 var iteration = 0;
 var iterationStatus = {};
@@ -33,8 +33,6 @@ var errorHandler = function(err){
 };
 
 var endHandler = function(){
-    console.log('FINITO');
-
     statusControl.update('build', {
         status: iterationStatus.status,
         msg: iterationStatus.msg
