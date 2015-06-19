@@ -1,0 +1,36 @@
+.todo-widget {}
+
+
+/* Todos item
+-------------------------------------------------- */
+
+.todo-widget_item {}
+
+.todo-widget_item_check-control {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    }
+
+input.todo-widget_item_checkbox {
+    margin: -2px 0 0;
+    }
+
+.todo-widget_item_checkbox {
+    display: inline-block;
+    vertical-align: middle;
+    }
+
+.todo-widget_item_text {
+    display: inline-block;
+    }
+
+.todo-widget_item_actions {
+    float: right;
+    }
+
+    p {
+        color: red;
+    }
+
+/* /Todos item */

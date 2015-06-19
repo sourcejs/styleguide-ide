@@ -1,0 +1,18 @@
+{
+  "name": "css-lint-test",
+  "description": "testing grunt-postCSS",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "",
+  "author": {
+    "name": "Carlos Kloske",
+    "email": "carlosk@backbase.com"
+  },
+  "dependencies": {
+    "grunt": "*",
+    "grunt-postcss": "*"
+  },
+  "devDependencies": {
+    "grunt-contrib-csslint": "^0.4.0",
+    "grunt-eslint": "^15.0.0"  }
+}

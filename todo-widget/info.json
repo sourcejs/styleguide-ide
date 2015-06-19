@@ -1,0 +1,5 @@
+{
+  "title": "Todo Widget",
+  "template": "$(context)/bower_components/feature-bloc-templates/widget-engine.ejs",
+  "specFile": "index.dev.html"
+}

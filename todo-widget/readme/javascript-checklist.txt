@@ -1,0 +1,13 @@
+** Begin your module with "use strict"
+Use the prototype pattern for structuring your widget js code.
+Use Launchpad dependency management mechanism (RequireJS).
+Use constants for your string selectors at the top of the file. Separate into SELECTORS (for traversing the DOM, eg. to find all list items) and CLASSES (for behavior, eg. a class to make an element hidden).
+Add 2 properties in your prototype: widget and $widgetBody, for easy access of the other methods.
+Cache jQuery objects in the constructor. Name those objects with names starting with $ (to immediately understand which objects are jQuery ones).
+Avoid running the same jQuery selectors again and again either cache (previous point) or use chaining
+Avoid heavy DOM manipulation with javascript, for performance reasons
+Define an init() method that starts the widget.
+At the end of your module, return a function that returns an initiated instance of the widget.
+Write JSDoc comments
+** Variable definitions within a function should be done in the beginning of the function
+Use classes to hold state (eg. $element.addClass('ba-hidden') instead of $element.hide() )

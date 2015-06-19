@@ -1,0 +1,13 @@
+** Don't use ids for styling. 
+Avoid long selectors.
+Avoid styling tags, use classes instead (eg. instead of styling ul.ba-list > li create a new class named ba-list-item and style directly that)
+Prefer using CSS3 over over techniques (eg. gradients or rounded corners)
+Group relative styles together, avoid re-writing the same rules.
+Try to be semantic with class names when needed, but not only for the sake of semantics (eg. grid classes like: span12 are fine, even if they are not semantic at all)
+Avoid arbitrary values (why do you need a margin-left: 12px?)
+Don't write all styles in one line.
+Logically group your styles.
+Overriding Bootstrap classes in a widget should only happen for exceptions very specific to the widget.
+Overriding Bootstrap classes in a widget happens by prepending the widget class to the bootstrap class (eg. override .btn by using the rule .ba-todo .btn)
+Don't use @import in your widget CSS file.
+Don't use !important.

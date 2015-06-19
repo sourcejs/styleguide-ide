@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog>
+    <widget>
+        <name>todo-widget</name>
+        <contextItemName>[BBHOST]</contextItemName>
+        <properties>
+            <property name="src">
+                <value type="string">$(contextRoot)/static/components/todo-widget/index.html</value>
+            </property>
+            <property name="thumbnailUrl">
+                <value type="string">$(contextRoot)/static/components/todo-widget/icon.png</value>
+            </property>
+            <property label="Title" name="title">
+                <value type="string">Todo Widget</value>
+            </property>
+            <property name="TemplateName">
+                <value type="string">Standard_Widget</value>
+            </property>
+            <property label="Widget Chrome" name="widgetChrome">
+                <value type="string">$(contextRoot)/static/backbase.com.2012.aurora/html/chromes/widget_default.html</value>
+            </property>
+        </properties>
+    </widget>
+</catalog>
