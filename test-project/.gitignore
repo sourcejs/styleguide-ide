@@ -1,8 +1,9 @@
 *.idea
 *.iml
 *.DS_Store
-node_modules
 
 # Your settings
 dist
 
+node_modules/*
+!node_modules/sourcejs-contrib-status
