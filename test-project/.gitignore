@@ -7,3 +7,4 @@ dist
 
 node_modules/*
 !node_modules/sourcejs-contrib-status
+!node_modules/sourcejs-html-inspector
