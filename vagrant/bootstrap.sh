@@ -6,5 +6,5 @@ forever start node_modules/sourcejs/app.js
 cd /home/vagrant/styleguide-ide/watcher-build
 forever start gulp watch
 
-cd /home/vagrant/styleguide-ide/watcher-lint
+cd /home/vagrant/styleguide-ide/watch-lint
 forever start gulp watch
