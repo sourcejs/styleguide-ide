@@ -1,1 +1,1 @@
-call vagrant up
+call vagrant up --provision

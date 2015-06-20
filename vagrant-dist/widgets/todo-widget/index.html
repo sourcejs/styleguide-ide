@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:g="http://www.backbase.com/2008/gadget" xml:lang="en">
+<head>
+    <title>Todo Widget</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="dist/css/todo-widget.css" />
+
+    <g:preferences>
+        <g:preference name="limit" label="Undone TODO limit" viewHint="user" type="range" default="5" min="2" max="10" />
+        <g:preference name="store" label="Todos Storage" viewHint="user" type="text" default="{}" />
+    </g:preferences>
+</head>
+<body g:onload="requireWidget(__WIDGET__, 'js/todo-widget')" class="todo-widget">
+    <h1 class="todo-widget_title">Todo Widget</h1>
+    <h2 class="todo-widget_sub-title">TODOs</h2>
+    <form class="todo-widget_form" data-js="todo-widget_form" action="">
+        <div class="input-group">
+            <input type="text" class="form-control" data-js="todo-widget_input" />
+            <div class="input-group-btn">
+                <button class="todo-widget_form_submit btn btn-default" data-js="todo-widget_submit" type="submit">Add TODO</button>
+            </div>
+        </div>
+    </form>
+    <ul class="todo-widget_list list-group" data-js="todo-widget_list">
+        <!-- Filled dynamically -->
+    </ul>
+    <a href="#7" class="todo-widget_delete-all btn btn-default" data-js="todo-widget_clean-all">Delete all TODOs</a>
+</body>
+</html>
