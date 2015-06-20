@@ -16,6 +16,13 @@ var iterationStatus = {};
 var cssFiles = path.join(baseDir + '/**/*.css');
 var jsFiles = path.join(baseDir + '/**/*.js');
 
+var endHandler = function(){
+    statusControl.update('Lint', {
+        status: iterationStatus.status,
+        msg: iterationStatus.msg
+    });
+};
+
 var errorHandler = function(err){
     // Output an error message
     gutil.log(gutil.colors.red('Error (' + err.plugin + '): ' + err.message));
@@ -24,7 +31,7 @@ var errorHandler = function(err){
     iterationStatus.msg = err.message;
 
     // emit the end event, to properly end the task
-    this.emit('end');
+    if (this.emit) this.emit('end');
 
     if (!skipError) {
         endHandler();
@@ -32,10 +39,16 @@ var errorHandler = function(err){
     }
 };
 
-var endHandler = function(){
-    statusControl.update('lint', {
-        status: iterationStatus.status,
-        msg: iterationStatus.msg
+var customReporter = function(file){
+    gutil.log(gutil.colors.cyan(file.csslint.errorCount) + ' errors in ' + gutil.colors.magenta(file.path));
+
+    file.csslint.results.forEach(function (result) {
+        gutil.log(result.error.message + ' on line ' + result.error.line);
+    });
+
+    errorHandler({
+        message: file.csslint.results[0].error.message,
+        plugin: 'CSSLint'
     });
 };
 
@@ -54,7 +67,7 @@ gulp.task('css-lint', function () {
         ])
         .pipe(plumber(errorHandler))
         .pipe(csslint())
-        .pipe(csslint.reporter());
+        .pipe(csslint.reporter(customReporter));
 });
 
 gulp.task('eslint', function () {

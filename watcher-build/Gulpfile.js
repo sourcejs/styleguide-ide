@@ -33,7 +33,7 @@ var errorHandler = function(err){
 };
 
 var endHandler = function(){
-    statusControl.update('build', {
+    statusControl.update('Build', {
         status: iterationStatus.status,
         msg: iterationStatus.msg
     });
