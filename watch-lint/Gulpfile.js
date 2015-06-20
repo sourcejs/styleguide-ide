@@ -1,8 +1,8 @@
 var gulp = require('gulp');
-var less = require('gulp-less');
+var eslint = require('gulp-eslint');
 var rename = require('gulp-rename');
 var path = require('path');
-var babel = require('gulp-babel');
+var csslint = require('gulp-csslint');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
 var statusControl = require('../status-control');
@@ -13,8 +13,8 @@ var baseDir = '../test-project/bundles';
 var iteration = 0;
 var iterationStatus = {};
 
-var lessFiles = path.join(baseDir + '/**/*.less');
-var jsxFiles = path.join(baseDir + '/**/*.jsx');
+var cssFiles = path.join(baseDir + '/**/*.css');
+var jsFiles = path.join(baseDir + '/**/*.js');
 
 var errorHandler = function(err){
     // Output an error message
@@ -33,7 +33,7 @@ var errorHandler = function(err){
 };
 
 var endHandler = function(){
-    statusControl.update('build', {
+    statusControl.update('lint', {
         status: iterationStatus.status,
         msg: iterationStatus.msg
     });
@@ -46,32 +46,50 @@ gulp.task('pre', function () {
     iteration++;
 });
 
-gulp.task('less', function () {
+gulp.task('css-lint', function () {
     return gulp.src([
-            lessFiles,
+            cssFiles,
             '!' + baseDir + '/**/node_modules/**',
             '!' + baseDir + '/**/bower_components/**'
         ])
         .pipe(plumber(errorHandler))
-        .pipe(less())
-        .pipe(rename(function(pathConf) {
-            pathConf.dirname = path.join(pathConf.dirname, '../dist/css');
-        }))
-        .pipe(gulp.dest(baseDir));
+        .pipe(csslint())
+        .pipe(csslint.reporter());
 });
 
-gulp.task('jsx', function () {
+gulp.task('eslint', function () {
     return gulp.src([
-            jsxFiles,
+            jsFiles,
             '!' + baseDir + '/**/node_modules/**',
             '!' + baseDir + '/**/bower_components/**'
         ])
         .pipe(plumber(errorHandler))
-        .pipe(babel())
-        .pipe(rename(function(pathConf) {
-            pathConf.dirname = path.join(pathConf.dirname, '../dist/js');
+        .pipe(eslint({
+            "globals": {
+                "define": true,
+                "gadgets": true
+            },
+            "env": {
+                "browser": true
+            },
+            "rules": {
+                "quotes": [0],
+                "no-console": [1],
+                "no-extra-boolean-cast": [0],
+                "no-underscore-dangle": [0],
+                "no-alert": [1],
+                "semi": [0],
+                "curly": [0],
+                "eol-last": [0],
+                "vars-on-top": [1]
+            }
         }))
-        .pipe(gulp.dest(baseDir));
+        // eslint.format() outputs the lint results to the console.
+        // Alternatively use eslint.formatEach() (see Docs).
+        .pipe(eslint.format())
+        // To have the process exit with an error code (1) on
+        // lint error, return the stream and pipe to failOnError last.
+        .pipe(eslint.failOnError());
 });
 
 gulp.task('watch', function () {
@@ -80,11 +98,11 @@ gulp.task('watch', function () {
     gulp.run('default');
 
     gulp.watch([
-        lessFiles,
-        jsxFiles,
+        cssFiles,
+        jsFiles,
         '!' + baseDir + '/**/node_modules/**',
-        '!' + baseDir + '/**/bower_components/**'
+        '!' + baseDir + '/**/bower_components/**/*'
     ], ['default']);
 });
 
-gulp.task('default', ['pre', 'less', 'jsx'], endHandler);
+gulp.task('default', ['pre', 'css-lint', 'eslint'], endHandler);

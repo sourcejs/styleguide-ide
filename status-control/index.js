@@ -7,6 +7,7 @@ var config = {
 };
 
 var write = module.exports.write = function(data){
+    fs.ensureFileSync(config.dataPath, '');
     fs.writeJsonSync(config.dataPath, data);
 };
 
