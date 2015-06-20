@@ -3,3 +3,10 @@
 * Overriding core styles
 *
 */
+
+
+.source_header {
+    position: fixed !important;
+    opacity: 1 !important;
+    margin: 0 !important;
+    }
